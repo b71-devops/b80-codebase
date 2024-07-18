@@ -5,10 +5,14 @@ pipeline {
         }
     }
 
+environment {
+    PATH = "/opt/apache-maven-3.9.8/bin:$PATH"
+}
+
     stages {
-        stage('Pull-Codebase') {
+        stage("CODE-BUILD") {
             steps {
-                git branch: 'main', url: 'https://github.com/b71-devops/b80-codebase.git'
+                sh 'mvn clean install'
             }
         }
     }
